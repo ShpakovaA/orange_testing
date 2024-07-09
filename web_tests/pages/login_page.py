@@ -31,6 +31,7 @@ class LoginPage(BasePage):
 
     def navigate(self):
         self.browser.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+        return self
 
     def is_displayed(self):
         return self.login_button.is_displayed()

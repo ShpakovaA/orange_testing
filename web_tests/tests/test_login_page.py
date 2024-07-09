@@ -1,7 +1,5 @@
-from web_tests.pages.login_page import LoginPage
 
-
-def test_valid_credentials_login(browser, valid_user):
+def test_valid_credentials_login(login_page, valid_user):
     """
     1. Navigate to base url
     2. Enter valid username
@@ -10,11 +8,8 @@ def test_valid_credentials_login(browser, valid_user):
     Verify that Dashboard page is displayed
     """
 
-    login_page = LoginPage(browser)
-    login_page.navigate()
-
-    dashboard_page = login_page.perform_successful_login(valid_user)
-    assert dashboard_page.is_displayed(), "Dashboard page isn't displayed"
+    dashboard_page_ = login_page.perform_successful_login(valid_user)
+    assert dashboard_page_.is_displayed(), "Dashboard page isn't displayed"
 
 
 def test_invalid_password_login(login_page, invalid_user):

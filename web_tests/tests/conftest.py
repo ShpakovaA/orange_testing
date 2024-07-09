@@ -26,3 +26,9 @@ def invalid_user():
 def login_page(browser):
     return LoginPage(browser).navigate()
 
+
+@pytest.fixture()
+def dashboard_page(login_page, valid_user):
+    return login_page.perform_successful_login(valid_user)
+
+
