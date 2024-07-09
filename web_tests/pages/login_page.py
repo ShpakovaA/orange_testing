@@ -30,31 +30,31 @@ class LoginPage(BasePage):
         return self.get_element(LoginPage.ERROR_MESSAGE)
 
     def navigate(self):
-        self._browser.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+        self.browser.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
 
     def is_displayed(self):
-        self.login_button.is_displayed()
+        return self.login_button.is_displayed()
 
-    def enter_username(self, username):
-        self.username_field.send_keys(username)
+    def enter_username(self, user):
+        self.username_field.send_keys(user.username)
 
-    def enter_password(self, password):
-        self.password_field.send_keys(password)
+    def enter_password(self, user):
+        self.password_field.send_keys(user.password)
 
     def click_login_button(self):
         self.login_button.click()
 
-    def fill_creds_and_click_login_button(self, username, password):
-        self.enter_username(username)
-        self.enter_password(password)
+    def fill_creds_and_click_login_button(self, user):
+        self.enter_username(user)
+        self.enter_password(user)
         self.click_login_button()
 
-    def perform_successful_login(self, username, password):
-        self.fill_creds_and_click_login_button(username,password)
-        return DashboardPage(self._browser)
+    def perform_successful_login(self, user):
+        self.fill_creds_and_click_login_button(user)
+        return DashboardPage(self.browser)
 
-    def perform_unsuccessful_login(self, username, password):
-        self.fill_creds_and_click_login_button(username, password)
+    def perform_unsuccessful_login(self, user):
+        self.fill_creds_and_click_login_button(user)
         return self
 
 
