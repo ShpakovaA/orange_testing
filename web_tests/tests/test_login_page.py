@@ -1,4 +1,4 @@
-
+from web_tests.helpers.resources import Resources
 def test_valid_credentials_login(login_page, valid_user):
     """
     1. Navigate to base url
@@ -26,4 +26,4 @@ def test_invalid_password_login(login_page, invalid_user):
 
     assert login_page.is_displayed(), "Login page isn't displayed"
     assert login_page.error_message.is_displayed(), "Error isn't displayed"
-    assert login_page.error_message.text == "Invalid credentials", "Error isn't displayed"
+    assert login_page.error_message.text == Resources.LoginPage.INVALID_CREDENTIALS_ERROR, "Error isn't displayed"

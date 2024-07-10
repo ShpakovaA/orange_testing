@@ -59,7 +59,7 @@ class DashboardPage(BasePage):
 
     @property
     def side_panel(self):
-        return self.get_element(DashboardPage.SIDE_PANEL)
+        return self.get_element(DashboardPage.SIDE_PANEL, timeout=4)
 
     @property
     def side_panel_button(self):
