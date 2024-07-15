@@ -1,4 +1,6 @@
 from web_tests.helpers.resources import Resources
+
+
 def test_valid_credentials_login(login_page, valid_user):
     """
     1. Navigate to base url

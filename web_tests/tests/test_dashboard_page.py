@@ -1,3 +1,5 @@
+from time import sleep
+
 
 def test_user_dropdown_menu(dashboard_page):
     """
@@ -17,14 +19,13 @@ def test_user_dropdown_menu(dashboard_page):
     user_dropdown.click()
 
     assert dashboard_page.user_dropdown_menu.is_displayed(), "User dropdown menu is not displayed"
-    assert dashboard_page.about_option.is_displayed(), "About option is not displayed"
-    assert dashboard_page.support_option.is_displayed(), "Support option is not displayed"
-    assert dashboard_page.change_password_option.is_displayed(), "Change Password option is not displayed"
-    assert dashboard_page.logout_option.is_displayed(), "Logout option is not displayed"
+    assert dashboard_page.about_option_is_displayed(), "About option is not displayed"
+    assert dashboard_page.support_option_is_displayed(), "Support option is not displayed"
+    assert dashboard_page.change_password_option_is_displayed(), "Change Password option is not displayed"
+    assert dashboard_page.logout_option_is_displayed(), "Logout option is not displayed"
 
 
 def test_logout(dashboard_page, login_page):
-
     """
     1.Navigate to base url
     2.Login
@@ -46,9 +47,7 @@ def test_search_field_valid_query(dashboard_page):
     """
 
     dashboard_page.search("Time")
-
-    assert dashboard_page.time_option.is_displayed(), "Relevant option isn't found"
-
+    assert dashboard_page.side_panel_item_is_displayed("Time")
 
 def test_side_panel_button(dashboard_page):
     """
@@ -64,8 +63,7 @@ def test_side_panel_button(dashboard_page):
     assert dashboard_page.side_panel.is_displayed(), "Side panel isn't displayed"
 
     dashboard_page.hide_side_panel()
-    assert dashboard_page.icon_for_hidden_panel.is_displayed(), "Wrong button behaviour, when try to hide side panel"
+    assert dashboard_page.side_panel_is_hidden(), "Wrong behaviour, when try to hide side panel"
 
     dashboard_page.display_side_panel()
-    assert dashboard_page.icon_for_displayed_panel.is_displayed(), "Wrong button behaviour, when try to display side panel"
-
+    assert dashboard_page.side_panel_is_displayed(), "Wrong behaviour, when try to display side panel"
