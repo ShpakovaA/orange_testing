@@ -1,4 +1,4 @@
-from time import sleep
+import pytest
 
 
 def test_user_dropdown_menu(dashboard_page):
@@ -38,7 +38,8 @@ def test_logout(dashboard_page, login_page):
     assert login_page.is_displayed(), "Logout failed"
 
 
-def test_search_field_valid_query(dashboard_page):
+@pytest.mark.parametrize('query, search_result', [("Time", "Time"), ("P", "PIM"), ("P", "Performance")])
+def test_search_field_valid_query(dashboard_page, query, search_result):
     """
     1. Navigate to base url
     2. Login
@@ -46,8 +47,9 @@ def test_search_field_valid_query(dashboard_page):
     Verify that relevant option is auto suggested
     """
 
-    dashboard_page.search("Time")
-    assert dashboard_page.side_panel_item_is_displayed("Time")
+    dashboard_page.search(query)
+    assert dashboard_page.side_panel_item_is_displayed(search_result)
+
 
 def test_side_panel_button(dashboard_page):
     """

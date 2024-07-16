@@ -65,7 +65,7 @@ class SidePanel(BasePage):
 
 #------------------------------------------------------------------------
 
-    ITEM = (By.XPATH, '//span[@class="oxd-text oxd-text--span oxd-main-menu-item--name"][text()={title}]')
+    ITEM = (By.XPATH, '//span[@class="oxd-text oxd-text--span oxd-main-menu-item--name"][text()="{title}"]')
 
     @property
     def menu_item(self):
