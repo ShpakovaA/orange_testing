@@ -1,13 +1,14 @@
 import pytest
 from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 from web_tests.helpers.user import User
-from web_tests.pages.login_page import LoginPage
+import web_tests.pages.login_page as LP
 
 
 @pytest.fixture()
 def browser():
-    browser = Chrome()
-    browser.implicitly_wait(3)
+    browser = Chrome(service=ChromeService(ChromeDriverManager().install()))
     yield browser
     browser.quit()
 
@@ -24,7 +25,7 @@ def invalid_user():
 
 @pytest.fixture()
 def login_page(browser):
-    return LoginPage(browser).navigate()
+    return LP.LoginPage(browser).navigate()
 
 
 @pytest.fixture()

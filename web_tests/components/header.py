@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from web_tests.pages.base_page import BasePage
+import web_tests.pages.login_page as login_page
 
 
 class HeaderSection(BasePage):
@@ -46,20 +47,10 @@ class HeaderSection(BasePage):
     def logout_option(self):
         return self.get_element(HeaderSection.LOGOUT_OPTION)
 
-    def about_option_is_displayed(self):
-        return self.about_option.text == "About"
-
-    def support_option_is_displayed(self):
-        return self.support_option.text == "Support"
-
-    def change_password_option_is_displayed(self):
-        return self.change_password_option.text == "Change Password"
-
-    def logout_option_is_displayed(self):
-        return self.logout_option.text == "Logout"
-
     def logout(self):
         self.user_dropdown.click()
         self.logout_option.click()
+        return login_page.LoginPage(self.browser)
+
 
 

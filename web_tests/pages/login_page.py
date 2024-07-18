@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from web_tests.pages.base_page import BasePage
-from web_tests.pages.dashboard_page import DashboardPage
+import web_tests.pages.dashboard_page as dashboard_page
 
 
 class LoginPage(BasePage):
@@ -52,7 +52,7 @@ class LoginPage(BasePage):
 
     def perform_successful_login(self, user):
         self.fill_creds_and_click_login_button(user)
-        return DashboardPage(self.browser)
+        return dashboard_page.DashboardPage(self.browser)
 
     def perform_unsuccessful_login(self, user):
         self.fill_creds_and_click_login_button(user)
